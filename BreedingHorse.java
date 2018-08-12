@@ -6,79 +6,52 @@
  */
 
 import java.util.Objects;
-import java.util.Scanner;
 
-public class Horse
+public class BreedingHorse extends Horse
 {
-    //instance variables
-    private String name;
-    private String color;
-    private int birthYear;
+    private String mother;
+    private String father;
 
-    public Horse() {
-        this.name = "";
-        this.color = "";
-        this.birthYear = 0;
+    public BreedingHorse() {
+        this.mother = "";
+        this.father = "";
     }
 
-    public Horse(String name, String color, int birthYear) {
-        this.name = name;
-        this.color = color;
-        this.birthYear = birthYear;
+    public BreedingHorse(String name, String color, int birthYear, String mother, String father) {
+        super(name, color, birthYear);
+        this.mother = mother;
+        this.father = father;
     }
 
-    public String getName() {
-        return name;
+    public String getMother() {
+        return mother;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMother(String mother) {
+        this.mother = mother;
     }
 
-    public String getColor() {
-        return color;
+    public String getFather() {
+        return father;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public int getBirthYear() {
-        return birthYear;
-    }
-
-    public void testing(int num){
-        System.out.println(!(num > 1 && num < 5));
-    }
-
-    public void setBirthYear(int birthYear) {
-        while(birthYear < 1988 || birthYear > 2018) {
-            System.out.println("Year must be after 1988 and before 2018.");
-            Scanner scan = new Scanner(System.in);
-            birthYear = scan.nextInt();
-        }
-        this.birthYear = birthYear;
-    }
-
-    public String toString() {
-        return  "Name: " + name +
-                ", Color: " + color +
-                ", Birth year: " + birthYear;
+    public void setFather(String father) {
+        this.father = father;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Horse horse = (Horse) o;
-        return birthYear == horse.birthYear &&
-                Objects.equals(name, horse.name) &&
-                Objects.equals(color, horse.color);
+        BreedingHorse that = (BreedingHorse) o;
+        return Objects.equals(mother, that.mother) &&
+                Objects.equals(father, that.father);
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(name, color, birthYear);
+    public String toString() {
+        return super.toString() +
+                ", Mother: " + mother +
+                ", Father: " + father;
     }
 }
